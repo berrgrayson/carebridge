@@ -123,6 +123,21 @@ export const updateAppointment = async ({
   }
 };
 
+export const deleteAppointment = async (appointmentId: string) => {
+  try {
+    const deletedAppointment = await databases.deleteDocument(
+      DATABASE_ID!,
+      APPOINTMENT_COLLECTION_ID!,
+      appointmentId
+    );
+
+    revalidatePath("/admin");
+    return parseStringify(deletedAppointment);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const sendSMSNotification = async (userId: string, content: string) => {
   try {
     const message = await messaging.createSms(

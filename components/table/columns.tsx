@@ -1,13 +1,15 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-
 import StatusBadge from "../StatusBadge";
 import { formatDateTime } from "@/lib/utils";
 import { Doctors } from "@/constants";
 import Image from "next/image";
 import AppointmentModal from "../AppointmentModal";
+import DeleteModal from "../DeleteModal";
 import { Appointment } from "@/types/appwrite.types";
+import { ArrowUpDown } from "lucide-react";
+import { Button } from "../ui/button";
 
 export const columns: ColumnDef<Appointment>[] = [
   {
@@ -23,7 +25,17 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
       <div className="min-w-[115px]">
         <StatusBadge status={row.original.status} />
@@ -32,7 +44,17 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "schedule",
-    header: "Appointment",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Appointment
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
       <p className="text-14-regular min-w-[100px]">
         {formatDateTime(row.original.schedule).dateTime}
@@ -41,7 +63,17 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "primaryPhysician",
-    header: () => "Doctor",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Doctor
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const doctor = Doctors.find(
         (doc) => doc.name === row.original.primaryPhysician
@@ -50,12 +82,8 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div className="flex items-center gap-3">
           <Image
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            src={doctor?.image}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            alt={doctor.name}
+            src={doctor?.image || ""}
+            alt={doctor?.name || ""}
             width={100}
             height={100}
             className="size-8"
@@ -83,6 +111,7 @@ export const columns: ColumnDef<Appointment>[] = [
             userId={data.userId}
             appointment={data}
           />
+          <DeleteModal appointmentId={data.$id} />
         </div>
       );
     },
