@@ -42,40 +42,40 @@ export const IdentificationTypes = [
 
 export const Doctors = [
   {
-    image: "/assets/images/dr-green.png",
-    name: "John Green",
+    image: "/assets/images/dr-clovis-paulin.png",
+    name: "Clovis Paulin BARAMBUYE",
   },
   {
-    image: "/assets/images/dr-cameron.png",
-    name: "Leila Cameron",
+    image: "/assets/images/dr-stanislas.png",
+    name: "Stanislas HARAKANDI",
   },
   {
-    image: "/assets/images/dr-livingston.png",
-    name: "David Livingston",
+    image: "/assets/images/dr-rosine.png",
+    name: "Rosine MUHIMPUNDU",
   },
   {
-    image: "/assets/images/dr-peter.png",
-    name: "Evan Peter",
+    image: "/assets/images/dr-deogracias.png",
+    name: "Déogracias NTUKAMAZINA",
   },
   {
-    image: "/assets/images/dr-powell.png",
-    name: "Jane Powell",
+    image: "/assets/images/dr-hermann.png",
+    name: "Hermann NIMPAYE",
   },
   {
-    image: "/assets/images/dr-remirez.png",
-    name: "Alex Ramirez",
+    image: "/assets/images/dr-gerard.png",
+    name: "Gérard NDAYIZEYE",
   },
   {
-    image: "/assets/images/dr-lee.png",
-    name: "Jasmine Lee",
+    image: "/assets/images/dr-sebastien.png",
+    name: "Sébatien MANIRAKIZA",
   },
   {
-    image: "/assets/images/dr-cruz.png",
-    name: "Alyana Cruz",
+    image: "/assets/images/dr-zacharie.png",
+    name: "Zacharie NDIZEYE",
   },
   {
-    image: "/assets/images/dr-sharma.png",
-    name: "Hardik Sharma",
+    image: "/assets/images/dr-alice.png",
+    name: "Alice NDAYISHIMIYE",
   },
 ];
 

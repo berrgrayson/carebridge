@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
 import { ID, Query } from "node-appwrite";
@@ -113,7 +114,7 @@ export const updateAppointment = async ({
       }
     `;
 
-    await sendSMSNotification(userId, smsMessage);
+    // await sendSMSNotification(userId, smsMessage);
 
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);
