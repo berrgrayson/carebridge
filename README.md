@@ -40,7 +40,6 @@
 - **Administrative Efficiency**: Powerful tools for healthcare administrators
 - **Real-Time Communication**: Instant SMS notifications for appointment updates
 - **Scalable Architecture**: Built to grow with your healthcare practice
-- **Security First**: HIPAA-compliant data handling and storage
 
 ---
 
@@ -107,7 +106,7 @@
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/carebridge.git
+   git clone https://github.com/berrgrayson/carebridge.git
    cd carebridge
    ```
 
