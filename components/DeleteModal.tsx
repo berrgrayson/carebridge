@@ -38,8 +38,8 @@ const DeleteModal = ({ appointmentId }: DeleteModalProps) => {
           <Trash2 className="size-4" />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
+      <AlertDialogContent className="shad-dialog sm:max-w-md">
+        <AlertDialogHeader className="mb-4 space-y-3">
           <AlertDialogTitle>
             {translations.modals.delete.title}
           </AlertDialogTitle>
@@ -51,7 +51,7 @@ const DeleteModal = ({ appointmentId }: DeleteModalProps) => {
           <AlertDialogCancel>
             {translations.modals.delete.cancel}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>
+          <AlertDialogAction onClick={handleDelete} className="shad-danger-btn">
             {translations.modals.delete.confirm}
           </AlertDialogAction>
         </AlertDialogFooter>
