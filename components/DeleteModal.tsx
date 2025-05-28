@@ -14,12 +14,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { deleteAppointment } from "@/lib/actions/appointment.actions";
+import { useLanguage } from "@/lib/context/LanguageContext";
 
 interface DeleteModalProps {
   appointmentId: string;
 }
 
 const DeleteModal = ({ appointmentId }: DeleteModalProps) => {
+  const { translations } = useLanguage();
+
   const handleDelete = async () => {
     try {
       await deleteAppointment(appointmentId);
@@ -37,15 +40,20 @@ const DeleteModal = ({ appointmentId }: DeleteModalProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            {translations.modals.delete.title}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the
-            appointment from the database.
+            {translations.modals.delete.description}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          <AlertDialogCancel>
+            {translations.modals.delete.cancel}
+          </AlertDialogCancel>
+          <AlertDialogAction onClick={handleDelete}>
+            {translations.modals.delete.confirm}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

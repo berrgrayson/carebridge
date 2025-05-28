@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import AppointmentForm from "./forms/AppointmentForm";
 import { Appointment } from "@/types/appwrite.types";
+import { useLanguage } from "@/lib/context/LanguageContext";
 
 const AppointmentModal = ({
   type,
@@ -25,6 +26,7 @@ const AppointmentModal = ({
   appointment?: Appointment;
 }) => {
   const [open, setOpen] = useState(false);
+  const { translations } = useLanguage();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -33,14 +35,16 @@ const AppointmentModal = ({
           variant="ghost"
           className={`capitalize ${type === "schedule" && "text-green-500"}`}
         >
-          {type}
+          {translations.actions[type]}
         </Button>
       </DialogTrigger>
       <DialogContent className="shad-dialog sm:max-w-md">
         <DialogHeader className="mb-4 space-y-3">
-          <DialogTitle className="capitalize">{type} Appointment</DialogTitle>
+          <DialogTitle className="capitalize">
+            {translations.modals[type].title}
+          </DialogTitle>
           <DialogDescription>
-            Please fill in the following details to {type} an appointment
+            {translations.modals[type].description}
           </DialogDescription>
         </DialogHeader>
 

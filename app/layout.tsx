@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-
 import { cn } from "@/lib/utils";
+import { LanguageProvider } from "@/lib/context/LanguageContext";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ const fontSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "CareBridge",
-  description: "A healthcare management system",
+  description: "Modern Healthcare Patient Management System",
 };
 
 export default function RootLayout({
@@ -28,7 +29,12 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {children}
+        <LanguageProvider>
+          <div className="fixed right-4 top-4 z-50">
+            <LanguageSwitcher />
+          </div>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

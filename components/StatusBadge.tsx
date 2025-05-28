@@ -1,34 +1,25 @@
-import { StatusIcon } from "@/constants";
-import clsx from "clsx";
-import Image from "next/image";
-import React from "react";
+"use client";
 
-const StatusBadge = ({ status }: { status: Status }) => {
+import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/context/LanguageContext";
+
+interface StatusBadgeProps {
+  status: "scheduled" | "pending" | "cancelled";
+}
+
+const StatusBadge = ({ status }: StatusBadgeProps) => {
+  const { translations } = useLanguage();
+
   return (
     <div
-      className={clsx("status-badge", {
-        "bg-green-600": status === "scheduled",
-        "bg-blue-600": status === "pending",
-        "bg-red-600": status === "cancelled",
-      })}
+      className={cn(
+        "w-fit rounded-full px-4 py-1 text-14-medium",
+        status === "scheduled" && "bg-green-500/10 text-green-500",
+        status === "pending" && "bg-yellow-500/10 text-yellow-500",
+        status === "cancelled" && "bg-red-500/10 text-red-500"
+      )}
     >
-      <Image
-        src={StatusIcon[status]}
-        alt={status}
-        width={24}
-        height={24}
-        className="h-fit w-3"
-      />
-
-      <p
-        className={clsx("text-12-semibold capitalize", {
-          "text-green-500": status === "scheduled",
-          "text-blue-500": status === "pending",
-          "text-red-500": status === "cancelled",
-        })}
-      >
-        {status}
-      </p>
+      {translations.status[status]}
     </div>
   );
 };

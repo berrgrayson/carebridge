@@ -1,13 +1,44 @@
+"use client";
+
 import StatCard from "@/components/StatCard";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { DataTable } from "@/components/table/DataTable";
-import { columns } from "@/components/table/columns";
+import { Columns } from "@/components/table/columns";
+import { useLanguage } from "@/lib/context/LanguageContext";
+import { useEffect, useState } from "react";
+import { Appointment } from "@/types/appwrite.types";
 
-const Admin = async () => {
-  const appointments = await getRecentAppointmentList();
+interface AppointmentData {
+  totalCount: number;
+  scheduledCount: number;
+  pendingCount: number;
+  cancelledCount: number;
+  documents: Appointment[];
+}
+
+const Admin = () => {
+  const { translations } = useLanguage();
+  const [appointments, setAppointments] = useState<AppointmentData | null>(
+    null
+  );
+  const columns = Columns();
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const data = await getRecentAppointmentList();
+      if (data) {
+        setAppointments(data);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+
+  if (!appointments) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
@@ -22,14 +53,18 @@ const Admin = async () => {
           />
         </Link>
 
-        <p className="text-16-semibold">Admin Dashboard</p>
+        <div className="flex items-center gap-4">
+          <p className="text-16-semibold">
+            {translations.common.adminDashboard}
+          </p>
+        </div>
       </header>
 
       <main className="admin-main">
         <section className="w-full space-y-4">
-          <h1 className="header">Welcome 👋🏽</h1>
+          <h1 className="header">{translations.common.welcome}</h1>
           <p className="text-dark-700">
-            Start the day with managing new appointments
+            {translations.common.manageAppointments}
           </p>
         </section>
 
@@ -37,19 +72,19 @@ const Admin = async () => {
           <StatCard
             type="appointments"
             count={appointments.scheduledCount}
-            label="Scheduled appointments"
+            label={translations.stats.scheduledAppointments}
             icon="/assets/icons/appointments.svg"
           />
           <StatCard
             type="pending"
             count={appointments.pendingCount}
-            label="Pending appointments"
+            label={translations.stats.pendingAppointments}
             icon="/assets/icons/pending.svg"
           />
           <StatCard
             type="cancelled"
             count={appointments.cancelledCount}
-            label="Cancelled appointments"
+            label={translations.stats.cancelledAppointments}
             icon="/assets/icons/cancelled.svg"
           />
         </section>

@@ -22,10 +22,13 @@ import { SelectItem } from "../ui/select";
 import Image from "next/image";
 import FileUploader from "../FileUploader";
 import { registerPatient } from "@/lib/actions/patient.actions";
+import { useLanguage } from "@/lib/context/LanguageContext";
+import { User } from "@/types/appwrite.types";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { translations } = useLanguage();
 
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -81,13 +84,15 @@ const RegisterForm = ({ user }: { user: User }) => {
         className="flex-1 space-y-12"
       >
         <section className="space-y-4">
-          <h1 className="header">Welcome 👋🏽</h1>
-          <p className="text-dark-700">Let us know more about yourself.</p>
+          <h1 className="header">{translations.common.welcome}</h1>
+          <p className="text-dark-700">{translations.patient.register.intro}</p>
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Personal Information</h2>
+            <h2 className="sub-header">
+              {translations.patient.register.personalInfo}
+            </h2>
           </div>
         </section>
 
@@ -95,7 +100,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="name"
-          label="Full Name"
+          label={translations.auth.name}
           placeholder="Berry Grayson"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
@@ -106,7 +111,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="email"
-            label="Email"
+            label={translations.auth.email}
             placeholder="niyobe@biu.bi"
             iconSrc="/assets/icons/email.svg"
             iconAlt="email"
@@ -116,7 +121,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
             name="phone"
-            label="Phone Number"
+            label={translations.patient.register.phone}
             placeholder="+257 62586652"
           />
         </div>
@@ -126,14 +131,14 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.DATE_PICKER}
             control={form.control}
             name="birthDate"
-            label="Date of Birth"
+            label={translations.patient.register.birthDate}
           />
 
           <CustomFormField
             fieldType={FormFieldType.SKELETON}
             control={form.control}
             name="gender"
-            label="Gender"
+            label={translations.patient.register.gender}
             renderSkeleton={(field) => (
               <FormControl>
                 <RadioGroup
@@ -160,7 +165,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="address"
-            label="Address"
+            label={translations.patient.register.address}
             placeholder="Muha, Kanyosha"
           />
 
@@ -168,7 +173,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="occupation"
-            label="Occupation"
+            label={translations.patient.register.occupation}
             placeholder="Software Engineer"
           />
         </div>
@@ -178,7 +183,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="emergencyContactName"
-            label="Emergency contact name"
+            label={translations.patient.register.emergencyContactName}
             placeholder="Guardian's name"
           />
 
@@ -186,14 +191,16 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
             name="emergencyContactNumber"
-            label="Emergency contact number"
+            label={translations.patient.register.emergencyContactNumber}
             placeholder="+257 79967654"
           />
         </div>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Medical Information</h2>
+            <h2 className="sub-header">
+              {translations.patient.register.medicalInfo}
+            </h2>
           </div>
         </section>
 
@@ -201,8 +208,8 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.SELECT}
           control={form.control}
           name="primaryPhysician"
-          label="Primary Physician"
-          placeholder="Select a physician"
+          label={translations.appointment.doctor}
+          placeholder={translations.appointment.doctor}
         >
           {Doctors.map((doctor) => (
             <SelectItem key={doctor.name} value={doctor.name}>
@@ -225,7 +232,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="insuranceProvider"
-            label="Insurance Provider"
+            label={translations.patient.register.insuranceProvider}
             placeholder="BICOR Vie"
           />
 
@@ -233,7 +240,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="insurancePolicyNumber"
-            label="Insurance policy number"
+            label={translations.patient.register.insurancePolicyNumber}
             placeholder="ABC123456"
           />
         </div>
@@ -243,7 +250,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="allergies"
-            label="Allergies (if any)"
+            label={translations.patient.register.allergies}
             placeholder="Peanuts, Penicillin"
           />
 
@@ -251,7 +258,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="currentMedication"
-            label="Current medication (if any)"
+            label={translations.patient.register.currentMedication}
             placeholder="Ibuprofen 200mg, Paracetamol 500 mg"
           />
         </div>
@@ -261,7 +268,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="familyMedicalHistory"
-            label="Family medical history"
+            label={translations.patient.register.familyMedicalHistory}
             placeholder="Mother had brain cancer, Father had heart disease"
           />
 
@@ -269,14 +276,16 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="pastMedicalHistory"
-            label="Past medical history"
+            label={translations.patient.register.pastMedicalHistory}
             placeholder="Appendectomy, Tonsillectomy"
           />
         </div>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Identification and verification</h2>
+            <h2 className="sub-header">
+              {translations.patient.register.identification}
+            </h2>
           </div>
         </section>
 
@@ -284,8 +293,8 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.SELECT}
           control={form.control}
           name="identificationType"
-          label="Identification type"
-          placeholder="Select an identification type"
+          label={translations.patient.register.identificationType}
+          placeholder={translations.patient.register.identificationType}
         >
           {IdentificationTypes.map((type) => (
             <SelectItem key={type} value={type}>
@@ -298,7 +307,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="identificationNumber"
-          label="Identification Number"
+          label={translations.patient.register.identificationNumber}
           placeholder="123.456.678/90"
         />
 
@@ -306,7 +315,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.SKELETON}
           control={form.control}
           name="identificationDocument"
-          label="Scanned copy of identification document"
+          label={translations.patient.register.identificationDocument}
           renderSkeleton={(field) => (
             <FormControl>
               <FileUploader files={field.value} onChange={field.onChange} />
@@ -316,7 +325,9 @@ const RegisterForm = ({ user }: { user: User }) => {
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Consent and privacy</h2>
+            <h2 className="sub-header">
+              {translations.patient.register.consent}
+            </h2>
           </div>
         </section>
 
@@ -324,22 +335,24 @@ const RegisterForm = ({ user }: { user: User }) => {
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="treatmentConsent"
-          label="I consent to treatment"
+          label={translations.patient.register.treatmentConsent}
         />
         <CustomFormField
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="disclosureConsent"
-          label="I consent to disclosure of information"
+          label={translations.patient.register.disclosureConsent}
         />
         <CustomFormField
           fieldType={FormFieldType.CHECKBOX}
           control={form.control}
           name="privacyConsent"
-          label="I consent to privacy consent"
+          label={translations.patient.register.privacyConsent}
         />
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <SubmitButton isLoading={isLoading}>
+          {translations.auth.signUp}
+        </SubmitButton>
       </form>
     </Form>
   );

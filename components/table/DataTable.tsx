@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { useLanguage } from "@/lib/context/LanguageContext";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,6 +33,7 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const { translations } = useLanguage();
 
   const table = useReactTable({
     data,
@@ -84,7 +86,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                {translations.table.noResults}
               </TableCell>
             </TableRow>
           )}

@@ -18,6 +18,7 @@ import {
   updateAppointment,
 } from "@/lib/actions/appointment.actions";
 import { Appointment } from "@/types/appwrite.types";
+import { useLanguage } from "@/lib/context/LanguageContext";
 
 const AppointmentForm = ({
   userId,
@@ -34,6 +35,7 @@ const AppointmentForm = ({
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { translations } = useLanguage();
 
   const AppointmentFormValidation = getAppointmentSchema(type);
 
@@ -51,8 +53,6 @@ const AppointmentForm = ({
   });
 
   async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
-    console.log("I'm submitting", { type });
-
     setIsLoading(true);
 
     let status;
@@ -68,7 +68,6 @@ const AppointmentForm = ({
         break;
     }
 
-    console.log({ type });
     try {
       if (type === "create" && patientId) {
         const appointmentData = {
@@ -89,12 +88,10 @@ const AppointmentForm = ({
             `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
         }
-      } else {
-        console.log("Updating appointment");
+      } else if (appointment?.$id) {
         const appointmentToUpdate = {
           userId,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-          appointmentId: appointment?.$id!,
+          appointmentId: appointment.$id,
           appointment: {
             primaryPhysician: values?.primaryPhysician,
             schedule: new Date(values?.schedule),
@@ -106,10 +103,10 @@ const AppointmentForm = ({
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
 
-        if (updatedAppointment) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          setOpen && setOpen(false);
+        if (updatedAppointment && setOpen) {
+          setOpen(false);
           form.reset();
+          router.refresh(); // Refresh the page data to show updated appointments
         }
       }
     } catch (error) {
@@ -123,13 +120,13 @@ const AppointmentForm = ({
 
   switch (type) {
     case "cancel":
-      buttonLabel = "Cancel Appointment";
+      buttonLabel = translations.actions.cancel;
       break;
     case "create":
-      buttonLabel = "Create Appointment";
+      buttonLabel = translations.appointment.submit;
       break;
     case "schedule":
-      buttonLabel = "Schedule Appointment";
+      buttonLabel = translations.actions.schedule;
       break;
     default:
       break;
@@ -137,14 +134,12 @@ const AppointmentForm = ({
 
   return (
     <Form {...form}>
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore */}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         {type === "create" && (
           <section className="mb-12 space-y-4">
-            <h1 className="header">New Appointment</h1>
+            <h1 className="header">{translations.patient.bookAppointment}</h1>
             <p className="text-dark-700">
-              Request a new appointment in 10 seconds
+              {translations.modals.schedule.description}
             </p>
           </section>
         )}
@@ -155,8 +150,8 @@ const AppointmentForm = ({
               fieldType={FormFieldType.SELECT}
               control={form.control}
               name="primaryPhysician"
-              label="Doctor"
-              placeholder="Select a doctor"
+              label={translations.appointment.doctor}
+              placeholder={translations.appointment.doctor}
             >
               {Doctors.map((doctor) => (
                 <SelectItem key={doctor.name} value={doctor.name}>
@@ -178,7 +173,7 @@ const AppointmentForm = ({
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="schedule"
-              label="Expected appointment date"
+              label={translations.appointment.date}
               showTimeSelect
               dateFormat="MM/dd/yyyy - h:mm aa"
             />
@@ -188,16 +183,16 @@ const AppointmentForm = ({
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="reason"
-                label="Reason for appointment"
-                placeholder="Enter reason for appointment"
+                label={translations.appointment.reason}
+                placeholder={translations.appointment.reason}
               />
 
               <CustomFormField
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="note"
-                label="Notes"
-                placeholder="Enter notes"
+                label={translations.appointment.notes}
+                placeholder={translations.appointment.notes}
               />
             </div>
           </>
@@ -208,8 +203,8 @@ const AppointmentForm = ({
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="cancellationReason"
-            label="Reason for cancellation"
-            placeholder="Enter reason for cancellation"
+            label={translations.appointment.cancellationReason}
+            placeholder={translations.appointment.cancellationReason}
           />
         )}
 
