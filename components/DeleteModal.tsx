@@ -35,7 +35,7 @@ const DeleteModal = ({ appointmentId }: DeleteModalProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="destructive" size="icon">
-          <Trash2 className="size-4" />
+          <Trash2 className="size-4 text-red-800" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="shad-dialog sm:max-w-md">
