@@ -68,7 +68,7 @@ const PatientForm = () => {
           control={form.control}
           name="name"
           label={translations.auth.name}
-          placeholder="Berry Grayson"
+          placeholder="Example: Berry Grayson"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
@@ -78,7 +78,7 @@ const PatientForm = () => {
           control={form.control}
           name="email"
           label={translations.auth.email}
-          placeholder="niyobe@biu.bi"
+          placeholder="Example: niyobe@biu.bi"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
         />

@@ -101,7 +101,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           control={form.control}
           name="name"
           label={translations.auth.name}
-          placeholder="Berry Grayson"
+          placeholder="Example: Berry Grayson"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
@@ -112,7 +112,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="email"
             label={translations.auth.email}
-            placeholder="niyobe@biu.bi"
+            placeholder="Example: niyobe@biu.bi"
             iconSrc="/assets/icons/email.svg"
             iconAlt="email"
           />
@@ -122,7 +122,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="phone"
             label={translations.patient.register.phone}
-            placeholder="+257 62586652"
+            placeholder="Example: +257 68000001"
           />
         </div>
 
@@ -166,7 +166,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="address"
             label={translations.patient.register.address}
-            placeholder="Muha, Kanyosha"
+            placeholder="Example: Muha, Kanyosha"
           />
 
           <CustomFormField
@@ -174,7 +174,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="occupation"
             label={translations.patient.register.occupation}
-            placeholder="Software Engineer"
+            placeholder="Example: Software Engineer"
           />
         </div>
 
@@ -184,7 +184,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="emergencyContactName"
             label={translations.patient.register.emergencyContactName}
-            placeholder="Guardian's name"
+            placeholder="Example: Don d'Honneur"
           />
 
           <CustomFormField
@@ -233,7 +233,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="insuranceProvider"
             label={translations.patient.register.insuranceProvider}
-            placeholder="BICOR Vie"
+            placeholder="Example: BICOR Vie"
           />
 
           <CustomFormField
@@ -241,7 +241,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="insurancePolicyNumber"
             label={translations.patient.register.insurancePolicyNumber}
-            placeholder="ABC123456"
+            placeholder="Example: ABC123456"
           />
         </div>
 
@@ -251,7 +251,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="allergies"
             label={translations.patient.register.allergies}
-            placeholder="Peanuts, Penicillin"
+            placeholder="Example: Peanuts, Penicillin"
           />
 
           <CustomFormField
@@ -259,7 +259,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="currentMedication"
             label={translations.patient.register.currentMedication}
-            placeholder="Ibuprofen 200mg, Paracetamol 500 mg"
+            placeholder="Example: Ibuprofen 200mg, Paracetamol 500 mg"
           />
         </div>
 
@@ -269,7 +269,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="familyMedicalHistory"
             label={translations.patient.register.familyMedicalHistory}
-            placeholder="Mother had brain cancer, Father had heart disease"
+            placeholder="Example: Mother had brain cancer, Father had heart disease"
           />
 
           <CustomFormField
@@ -277,7 +277,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="pastMedicalHistory"
             label={translations.patient.register.pastMedicalHistory}
-            placeholder="Appendectomy, Tonsillectomy"
+            placeholder="Example: Appendectomy, Tonsillectomy"
           />
         </div>
 
@@ -308,7 +308,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           control={form.control}
           name="identificationNumber"
           label={translations.patient.register.identificationNumber}
-          placeholder="123.456.678/90"
+          placeholder="Example: 123.456.678/90"
         />
 
         <CustomFormField
