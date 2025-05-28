@@ -2,7 +2,7 @@ export const en = {
   common: {
     welcome: "Welcome 👋🏽",
     manageAppointments: "Start the day with managing new appointments",
-    adminDashboard: "Admin Dashboard",
+    adminDashboard: "Admin",
     loading: "Loading...",
     error: "An error occurred",
     success: "Success",
@@ -147,7 +147,7 @@ export const fr = {
     welcome: "Bienvenue 👋🏽",
     manageAppointments:
       "Commencez la journée en gérant les nouveaux rendez-vous",
-    adminDashboard: "Tableau de Bord Admin",
+    adminDashboard: "Admin",
     loading: "Chargement...",
     error: "Une erreur est survenue",
     success: "Succès",
