@@ -26,12 +26,14 @@ const AppointmentForm = ({
   type,
   appointment,
   setOpen,
+  onSuccess, // Add this prop
 }: {
   userId: string;
   patientId: string;
   type: "create" | "cancel" | "schedule";
   appointment?: Appointment;
   setOpen?: (open: boolean) => void;
+  onSuccess?: () => void; // Add this to the type definition
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -106,7 +108,14 @@ const AppointmentForm = ({
         if (updatedAppointment && setOpen) {
           setOpen(false);
           form.reset();
-          router.refresh(); // Refresh the page data to show updated appointments
+
+          // Call the refresh callback to update parent component's data
+          if (onSuccess) {
+            onSuccess();
+          } else {
+            // Fallback to router.refresh() if no callback is provided
+            router.refresh();
+          }
         }
       }
     } catch (error) {

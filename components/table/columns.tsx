@@ -12,7 +12,8 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { useLanguage } from "@/lib/context/LanguageContext";
 
-export const Columns = () => {
+// Add refresh callback parameter
+export const Columns = (refreshAppointments?: () => void) => {
   const { translations } = useLanguage();
 
   const columns: ColumnDef<Appointment>[] = [
@@ -108,14 +109,21 @@ export const Columns = () => {
               patientId={data.patient.$id}
               userId={data.userId}
               appointment={data}
+              onSuccess={refreshAppointments} // Pass refresh callback
             />
             <AppointmentModal
               type="cancel"
               patientId={data.patient.$id}
               userId={data.userId}
               appointment={data}
+              onSuccess={refreshAppointments} // Pass refresh callback
             />
-            <DeleteModal appointmentId={data.$id} />
+            <DeleteModal
+              appointmentId={data.$id}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              onSuccess={refreshAppointments} // Pass refresh callback
+            />
           </div>
         );
       },

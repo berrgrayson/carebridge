@@ -19,11 +19,13 @@ const AppointmentModal = ({
   patientId,
   userId,
   appointment,
+  onSuccess,
 }: {
   type: "schedule" | "cancel";
   patientId: string;
   userId: string;
   appointment?: Appointment;
+  onSuccess?: () => void;
 }) => {
   const [open, setOpen] = useState(false);
   const { translations } = useLanguage();
@@ -54,6 +56,7 @@ const AppointmentModal = ({
           type={type}
           appointment={appointment}
           setOpen={setOpen}
+          onSuccess={onSuccess} // Pass the callback to AppointmentForm
         />
       </DialogContent>
     </Dialog>

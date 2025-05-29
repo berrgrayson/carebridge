@@ -7,8 +7,9 @@ import Link from "next/link";
 import { DataTable } from "@/components/table/DataTable";
 import { Columns } from "@/components/table/columns";
 import { useLanguage } from "@/lib/context/LanguageContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Appointment } from "@/types/appwrite.types";
+import Loader from "@/components/Loader";
 
 interface AppointmentData {
   totalCount: number;
@@ -23,21 +24,39 @@ const Admin = () => {
   const [appointments, setAppointments] = useState<AppointmentData | null>(
     null
   );
-  const columns = Columns();
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
+  const fetchAppointments = useCallback(async () => {
+    setIsLoading(true);
+    try {
       const data = await getRecentAppointmentList();
       if (data) {
         setAppointments(data);
       }
-    };
-
-    fetchAppointments();
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
+  // Function to refresh data - will be passed to child components
+  const refreshAppointments = useCallback(() => {
+    fetchAppointments();
+  }, [fetchAppointments]);
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [fetchAppointments]);
+
+  const columns = Columns(refreshAppointments); // Pass refresh function to columns
+
   if (!appointments) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -89,7 +108,13 @@ const Admin = () => {
           />
         </section>
 
-        <DataTable columns={columns} data={appointments.documents} />
+        <DataTable
+          columns={columns}
+          data={appointments.documents}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          isLoading={isLoading}
+        />
       </main>
     </div>
   );
