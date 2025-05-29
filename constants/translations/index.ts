@@ -2,10 +2,11 @@ export const en = {
   common: {
     welcome: "Welcome 👋🏽",
     manageAppointments: "Start the day with managing new appointments",
-    adminDashboard: "Admin",
+    adminDashboard: "Admin Page",
     loading: "Loading...",
     error: "An error occurred",
     success: "Success",
+    logout: "Logout",
   },
   auth: {
     login: "Login",
@@ -147,10 +148,11 @@ export const fr = {
     welcome: "Bienvenue 👋🏽",
     manageAppointments:
       "Commencez la journée en gérant les nouveaux rendez-vous",
-    adminDashboard: "Admin",
+    adminDashboard: "Page Admin",
     loading: "Chargement...",
     error: "Une erreur est survenue",
     success: "Succès",
+    logout: "Se Déconnecter",
   },
   auth: {
     login: "Connexion",

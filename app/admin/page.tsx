@@ -93,7 +93,7 @@ const Admin = () => {
               height={24}
               className="mr-1"
             />
-            Logout
+            {translations.common.logout}
           </Button>
         </div>
       </header>
