@@ -10,6 +10,8 @@ import { useLanguage } from "@/lib/context/LanguageContext";
 import { useEffect, useState, useCallback } from "react";
 import { Appointment } from "@/types/appwrite.types";
 import Loader from "@/components/Loader";
+import { Button } from "@/components/ui/button";
+import { handleLogout } from "@/lib/utils";
 
 interface AppointmentData {
   totalCount: number;
@@ -76,6 +78,23 @@ const Admin = () => {
           <p className="text-16-semibold">
             {translations.common.adminDashboard}
           </p>
+        </div>
+
+        <div>
+          <Button
+            onClick={handleLogout}
+            className="shad-button_ghost"
+            variant="ghost"
+          >
+            <Image
+              src="/assets/icons/logout.svg"
+              alt="logout"
+              width={24}
+              height={24}
+              className="mr-1"
+            />
+            Logout
+          </Button>
         </div>
       </header>
 
