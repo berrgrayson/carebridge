@@ -1,6 +1,6 @@
 export const en = {
   common: {
-    welcome: "Welcome 👋🏽",
+    welcome: "Hello👋🏽 Welcome to the platform for booking appointments.",
     manageAppointments: "Start the day with managing new appointments",
     adminDashboard: "Admin Page",
     loading: "Loading...",
@@ -14,12 +14,16 @@ export const en = {
     email: "Email",
     password: "Password",
     forgotPassword: "Forgot Password?",
+    validate: "Validate your information",
     signIn: "Sign In",
     signUp: "Sign Up",
     name: "Name",
     confirmPassword: "Confirm Password",
   },
   patient: {
+    welcome: "Patient Registration Form",
+    identification: "Please identify yourself to continue.",
+    continue: "Continue",
     dashboard: "Patient Dashboard",
     myAppointments: "My Appointments",
     bookAppointment: "Book Appointment",
@@ -145,7 +149,7 @@ export const en = {
 
 export const fr = {
   common: {
-    welcome: "Bienvenue 👋🏽",
+    welcome: "Bonjour👋🏽 Bienvenue sur la plateforme de prise de rendez-vous.",
     manageAppointments:
       "Commencez la journée en gérant les nouveaux rendez-vous",
     adminDashboard: "Page Admin",
@@ -160,12 +164,16 @@ export const fr = {
     email: "Email",
     password: "Mot de passe",
     forgotPassword: "Mot de passe oublié ?",
+    validate: "Validez vos informations",
     signIn: "Se connecter",
     signUp: "S'inscrire",
     name: "Nom",
     confirmPassword: "Confirmer le mot de passe",
   },
   patient: {
+    welcome: "Formulaire d'inscription du patient",
+    identification: "Veuillez vous identifier pour continuer.",
+    continue: "Continuer",
     dashboard: "Tableau de Bord Patient",
     myAppointments: "Mes Rendez-vous",
     bookAppointment: "Prendre un Rendez-vous",

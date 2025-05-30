@@ -148,6 +148,14 @@
     @apply text-[36px] leading-[40px] font-bold;
   }
 
+  .text-30-bold {
+    @apply text-[30px] leading-[34px] font-bold;
+  }
+
+  .text-26-bold {
+    @apply text-[26px] leading-[30px] font-bold;
+  }
+
   .text-24-bold {
     @apply text-[24px] leading-[28px] font-bold;
   }

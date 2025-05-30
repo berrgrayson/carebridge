@@ -88,7 +88,7 @@ const RegisterForm = ({ user }: { user: User }) => {
         className="flex-1 space-y-12"
       >
         <section className="space-y-4">
-          <h1 className="header">{translations.common.welcome}</h1>
+          <h1 className="header">{translations.patient.welcome}</h1>
           <p className="text-dark-700">{translations.patient.register.intro}</p>
         </section>
 
@@ -355,7 +355,7 @@ const RegisterForm = ({ user }: { user: User }) => {
         />
 
         <SubmitButton isLoading={isLoading}>
-          {translations.auth.signUp}
+          {translations.auth.validate}
         </SubmitButton>
       </form>
     </Form>
