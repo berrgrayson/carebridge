@@ -40,6 +40,7 @@
 - **Administrative Efficiency**: Powerful tools for healthcare administrators
 - **Real-Time Communication**: Instant SMS notifications for appointment updates
 - **Scalable Architecture**: Built to grow with your healthcare practice
+- **Multilingual Support**: Full support for English and French languages
 
 ---
 
@@ -52,6 +53,7 @@
 - **📱 Multi-Appointment Management**: Book and manage multiple appointments seamlessly
 - **📄 Document Upload**: Secure file storage for medical documents and records
 - **🔔 SMS Notifications**: Real-time appointment confirmations and reminders
+- **🌐 Language Selection**: Switch between English and French interfaces
 
 ### 🏥 Administrative Features
 
@@ -60,6 +62,7 @@
 - **📋 Schedule Management**: Flexible scheduling tools for optimal resource allocation
 - **❌ Cancellation Management**: Easy appointment cancellation with automatic notifications
 - **📈 Performance Analytics**: Monitor application performance with Sentry integration
+- **🌍 Multilingual Admin Interface**: Full language support in administrative dashboard
 
 ### 🛠️ Technical Features
 
@@ -68,6 +71,8 @@
 - **🔒 Secure Storage**: Appwrite-powered file storage and database management
 - **🎨 Modern UI/UX**: Clean, accessible design with ShadCN components
 - **📊 Error Monitoring**: Comprehensive error tracking and performance monitoring
+- **🌐 i18n Support**: Built-in internationalization with language context
+- **🚀 Real-time Updates**: Dynamic data refresh without page reloads
 
 ---
 
@@ -79,6 +84,7 @@
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript development
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[ShadCN/UI](https://ui.shadcn.com/)** - Modern component library
+- **[React Context](https://reactjs.org/docs/context.html)** - State management for language preferences
 
 ### Backend & Services
 
