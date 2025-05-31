@@ -100,7 +100,7 @@ const Admin = () => {
 
       <main className="admin-main">
         <section className="w-full space-y-4">
-          <h1 className="header">{translations.common.welcome}</h1>
+          <h1 className="header">{translations.common.adminwelcome}</h1>
           <p className="text-dark-700">
             {translations.common.manageAppointments}
           </p>

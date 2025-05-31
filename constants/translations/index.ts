@@ -1,6 +1,7 @@
 export const en = {
   common: {
     welcome: "Hello👋🏽 Welcome to the platform for booking appointments.",
+    adminwelcome: "Hello👋🏽 and welcome to the admin dashboard!",
     manageAppointments: "Start the day with managing new appointments",
     adminDashboard: "Admin Page",
     loading: "Loading...",
@@ -150,6 +151,8 @@ export const en = {
 export const fr = {
   common: {
     welcome: "Bonjour👋🏽 Bienvenue sur la plateforme de prise de rendez-vous.",
+    adminwelcome:
+      "Bonjour👋🏽 et bienvenue sur le tableau de bord d'administration !",
     manageAppointments:
       "Commencez la journée en gérant les nouveaux rendez-vous",
     adminDashboard: "Page Admin",
