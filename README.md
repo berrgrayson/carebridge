@@ -50,7 +50,6 @@
 
 - **🔐 Patient Registration**: Secure sign-up with comprehensive profile creation
 - **📅 Smart Appointment Booking**: Schedule appointments with preferred doctors and time slots
-- **📱 Multi-Appointment Management**: Book and manage multiple appointments seamlessly
 - **📄 Document Upload**: Secure file storage for medical documents and records
 - **🔔 SMS Notifications**: Real-time appointment confirmations and reminders
 - **🌐 Language Selection**: Switch between English and French interfaces

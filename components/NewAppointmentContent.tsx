@@ -32,6 +32,8 @@ const NewAppointmentContent = ({
             type="create"
             userId={userId}
             patientId={patient.$id}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             translations={translations}
           />
 

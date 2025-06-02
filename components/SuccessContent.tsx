@@ -71,7 +71,7 @@ const SuccessContent = ({ userId, appointment }: SuccessContentProps) => {
 
       <Button variant="outline" className="shad-primary-btn" asChild>
         <Link href={`/patients/${userId}/new-appointment`}>
-          {translations.patient.bookAppointment}
+          {translations.patient.bookAnotherAppointment}
         </Link>
       </Button>
 

@@ -1,13 +1,25 @@
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import SuccessContent from "@/components/SuccessContent";
 
-// http://localhost:3000/patients/123/new-appointment/success?appointmentId=123
-const Success = async ({
-  params: { userId },
-  searchParams,
-}: SearchParamProps) => {
-  const appointmentId = (searchParams?.appointmentId as string) || "";
-  const appointment = await getAppointment(appointmentId);
+interface SuccessProps {
+  params: Promise<{ userId: string }>;
+  searchParams: Promise<Record<string, string>>;
+}
+
+const Success = async ({ params, searchParams }: SuccessProps) => {
+  // Await both params and searchParams simultaneously
+  const [{ userId }, { appointmentId }] = await Promise.all([
+    params,
+    searchParams,
+  ]);
+
+  // Handle missing appointmentId safely
+  const appointmentIdValue = appointmentId || "";
+
+  // Only fetch appointment if we have an ID
+  const appointment = appointmentIdValue
+    ? await getAppointment(appointmentIdValue)
+    : null;
 
   return (
     <div className="flex h-screen max-h-screen px-[5%]">
