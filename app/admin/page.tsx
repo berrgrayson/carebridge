@@ -12,6 +12,7 @@ import { Appointment } from "@/types/appwrite.types";
 import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { handleLogout } from "@/lib/utils";
+import AuthGuard from "@/components/AuthGuard";
 
 interface AppointmentData {
   totalCount: number;
@@ -62,80 +63,82 @@ const Admin = () => {
   }
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col space-y-14">
-      <header className="admin-header">
-        <Link href="/" className="cursor-pointer">
-          <Image
-            src="/assets/icons/logo-full.svg"
-            height={32}
-            width={162}
-            alt="Logo"
-            className="h-8 w-fit"
-          />
-        </Link>
-
-        <div className="flex items-center gap-4">
-          <p className="text-16-semibold">
-            {translations.common.adminDashboard}
-          </p>
-        </div>
-
-        <div>
-          <Button
-            onClick={handleLogout}
-            className="shad-button_ghost"
-            variant="ghost"
-          >
+    <AuthGuard>
+      <div className="mx-auto flex max-w-7xl flex-col space-y-14">
+        <header className="admin-header">
+          <Link href="/" className="cursor-pointer">
             <Image
-              src="/assets/icons/logout.svg"
-              alt="logout"
-              width={24}
-              height={24}
-              className="mr-1"
+              src="/assets/icons/logo-full.svg"
+              height={32}
+              width={162}
+              alt="Logo"
+              className="h-8 w-fit"
             />
-            {translations.common.logout}
-          </Button>
-        </div>
-      </header>
+          </Link>
 
-      <main className="admin-main">
-        <section className="w-full space-y-4">
-          <h1 className="header">{translations.common.adminwelcome}</h1>
-          <p className="text-dark-700">
-            {translations.common.manageAppointments}
-          </p>
-        </section>
+          <div className="flex items-center gap-4">
+            <p className="text-16-semibold">
+              {translations.common.adminDashboard}
+            </p>
+          </div>
 
-        <section className="admin-stat">
-          <StatCard
-            type="appointments"
-            count={appointments.scheduledCount}
-            label={translations.stats.scheduledAppointments}
-            icon="/assets/icons/appointments.svg"
-          />
-          <StatCard
-            type="pending"
-            count={appointments.pendingCount}
-            label={translations.stats.pendingAppointments}
-            icon="/assets/icons/pending.svg"
-          />
-          <StatCard
-            type="cancelled"
-            count={appointments.cancelledCount}
-            label={translations.stats.cancelledAppointments}
-            icon="/assets/icons/cancelled.svg"
-          />
-        </section>
+          <div>
+            <Button
+              onClick={handleLogout}
+              className="shad-button_ghost"
+              variant="ghost"
+            >
+              <Image
+                src="/assets/icons/logout.svg"
+                alt="logout"
+                width={24}
+                height={24}
+                className="mr-1"
+              />
+              {translations.common.logout}
+            </Button>
+          </div>
+        </header>
 
-        <DataTable
-          columns={columns}
-          data={appointments.documents}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          isLoading={isLoading}
-        />
-      </main>
-    </div>
+        <main className="admin-main">
+          <section className="w-full space-y-4">
+            <h1 className="header">{translations.common.adminwelcome}</h1>
+            <p className="text-dark-700">
+              {translations.common.manageAppointments}
+            </p>
+          </section>
+
+          <section className="admin-stat">
+            <StatCard
+              type="appointments"
+              count={appointments.scheduledCount}
+              label={translations.stats.scheduledAppointments}
+              icon="/assets/icons/appointments.svg"
+            />
+            <StatCard
+              type="pending"
+              count={appointments.pendingCount}
+              label={translations.stats.pendingAppointments}
+              icon="/assets/icons/pending.svg"
+            />
+            <StatCard
+              type="cancelled"
+              count={appointments.cancelledCount}
+              label={translations.stats.cancelledAppointments}
+              icon="/assets/icons/cancelled.svg"
+            />
+          </section>
+
+          <DataTable
+            columns={columns}
+            data={appointments.documents}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            isLoading={isLoading}
+          />
+        </main>
+      </div>
+    </AuthGuard>
   );
 };
 
